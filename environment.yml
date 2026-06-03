@@ -10,3 +10,4 @@ dependencies:
   - pip:
     - python-dotenv
     - -e .
+  - sqlmodel
