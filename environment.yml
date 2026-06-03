@@ -1,0 +1,12 @@
+name: taller 2
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pip
+  - black
+  - flake8
+  - isort
+  - pip:
+    - python-dotenv
+    - -e .
