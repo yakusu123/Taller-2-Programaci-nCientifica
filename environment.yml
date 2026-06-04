@@ -1,4 +1,4 @@
-name: taller 2
+name: taller-2
 channels:
   - conda-forge
 dependencies:
