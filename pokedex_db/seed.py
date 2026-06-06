@@ -43,7 +43,7 @@ def seed_region(session: Session) -> None:
             descripcion="La región de Johto esta basada en Kinki y Tōkai. En esta región transcurren los siguientes videojuegos: de segunda generación, Pokémon Oro, Plata, Cristal y de cuarta generación, Oro HeartGold y Plata SoulSilver.(Fuente: Wikidex)",
         ),
         Region(
-            nombre="Hoen",
+            nombre="Hoenn",
             generacion=3,
             descripcion="La región de Hoenn esta basada en Kyūshū. En esta región transcurren los siguientes videojuegos: de tercera generación, Pokémon Rubí, Zafiro, Esmeralda, y de sexta generación, Rubí Omega y Zafiro Alfa.(Fuente: Wikidex)",
         ),
@@ -96,13 +96,13 @@ def seed_entrenadores(session: Session) -> None:
             nombre="Roxy", edad=16, insignias=8, region_id=mapa_regiones["Galar"]
         ),
         Entrenador(
-            nombre="Blasco", edad=10, insignias=8, region_id=mapa_regiones["Hoen"]
+            nombre="Blasco", edad=10, insignias=8, region_id=mapa_regiones["Hoenn"]
         ),
         Entrenador(
             nombre="Maximo",
             edad=25,
             insignias=8,
-            region_id=mapa_regiones["Hoen"],
+            region_id=mapa_regiones["Hoenn"],
             es_campeon=True,
         ),
         Entrenador(
@@ -195,7 +195,7 @@ def seed_pokemon_y_tipos(session: Session) -> None:
         ("Stonjourner", 44, 115, False, None, "Roxy", ["Roca"]),
         ("Barbaracle", 40, 105, False, None, "Roxy", ["Roca", "Agua"]),
         ("Sudowoodo", 38, 98, False, None, "Roxy", ["Roca"]),
-        ("Rhyperior", 6, 125, False, None, "Roxy", ["Tierra", "Roca"]),
+        ("Rhyhorn", 6, 125, False, None, "Roxy", ["Tierra", "Roca"]),
 
         ("Thievul", 28, 72, False, None, "Berto", ["Siniestro"]),
         ("Boltund", 30, 78, False, None, "Berto", ["Eléctrico"]),
