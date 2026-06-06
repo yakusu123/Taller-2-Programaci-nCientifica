@@ -14,7 +14,7 @@ class PokemonTipo(SQLModel, table=True):
     )
 
 
-class participacion(SQLModel, table=True):
+class Participacion(SQLModel, table=True):
     entrenador_id: int = Field(
         foreign_key="entrenador.id", primary_key=True
     )
@@ -56,13 +56,13 @@ class Batalla(SQLModel, table=True):
     lugar: str
     rondas: int
     ganador_id: Optional[int] = Field(
-        default=None, foreign_key="entrenador.id    "
+        default=None, foreign_key="entrenador.id"
     )
     ganador: Optional["Entrenador"] = Relationship(
         back_populates="batallas_ganadas"
     )
     entrenadores: List["Entrenador"] = Relationship(
-        back_populates="batallas", link_model=participacion
+        back_populates="batallas", link_model=Participacion
     )
 
 
@@ -84,7 +84,7 @@ class Entrenador(SQLModel, table=True):
         back_populates="entrenador"
     )
     batallas: List["Batalla"] = Relationship(
-        back_populates="entrenadores", link_model=participacion
+        back_populates="entrenadores", link_model=Participacion
     )
     batallas_ganadas: List["Batalla"] = Relationship(
         back_populates="ganador"
@@ -104,9 +104,9 @@ class Pokemon(SQLModel, table=True):
         foreign_key="entrenador.id"
     )
     entrenador: Optional["Entrenador"] = Relationship(
-        back_populates="Pokemons"
+        back_populates="pokemons"
     )
     tipos: List["Tipo"] = Relationship(
-        back_populates="pokemons",
+        back_populates="pokemon",
         link_model=PokemonTipo
     )
