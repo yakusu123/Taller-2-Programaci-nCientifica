@@ -1,4 +1,4 @@
-from sqlmodel import Session, select, func, col, case
+from sqlmodel import Session, select, func, col, case, text
 from models import Pokemon, Entrenador, Tipo, PokemonTipo, Participacion, Batalla, Region
 
 
@@ -114,18 +114,19 @@ def region_mas_insignias(session: Session) -> list[tuple[str, float]]:
     return [(str(r[0]), float(r[1])) for r in resultados]
 
 
-def consulta_libre(session: Session) -> list[int]:
+def consulta_libre(session: Session) -> list[dict]:
     """
-    Retorna la cantidad de pokemons de tipo agua que han sido parte de un equipo ganador
-    (Convertida a estilo ORM puro)
+    Retorna la cantidad de pokemons de tipo agua que han sido parte de un equipo ganador.
     """
-    consulta = (
-        select(func.count(col(Pokemon.id)))
-        .join(Entrenador, col(Pokemon.entrenador_id) == col(Entrenador.id))
-        .join(Batalla, col(Entrenador.id) == col(Batalla.ganador_id))
-        .join(PokemonTipo, col(Pokemon.id) == col(PokemonTipo.pokemon_id))
-        .join(Tipo, col(PokemonTipo.tipo_id) == col(Tipo.id))
-        .where(col(Tipo.nombre) == "Agua")
-    )
-    resultados = session.exec(consulta).all()
-    return [int(r) for r in resultados]
+    consulta_sql = text("""
+        SELECT COUNT(p.id) as cantidad_pokemon_agua_ganadores
+        FROM pokemon p
+        JOIN entrenador e ON p.entrenador_id = e.id
+        JOIN batalla b ON e.id = b.ganador_id
+        JOIN pokemontipo pt ON p.id = pt.pokemon_id
+        JOIN tipo t ON pt.tipo_id = t.id
+        WHERE t.nombre = 'Agua'
+    """)
+
+    resultados = session.execute(consulta_sql).mappings().all()
+    return [dict(r) for r in resultados]
