@@ -1,4 +1,4 @@
-name: taller 2
+name: taller-2
 channels:
   - conda-forge
 dependencies:
@@ -6,7 +6,9 @@ dependencies:
   - pip
   - black
   - flake8
+  - ruff
   - isort
   - pip:
     - python-dotenv
     - -e .
+  - sqlmodel
