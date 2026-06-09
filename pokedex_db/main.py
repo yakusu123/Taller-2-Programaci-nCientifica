@@ -20,7 +20,6 @@ def main() -> None:
     print("\n----------- Ejecucion de consultas -----------")
 
     with Session(engine) as session:
-
         print("\n[Consulta 1] Pokemon de nivel superior a 70:")
         resultado_c1 = queries.pokemon_alto_nivel(session, umbral=70)
         for nombre, nivel, apodo in resultado_c1:
@@ -38,7 +37,9 @@ def main() -> None:
         print("\n[Consulta 3] Pokemon shiny con apodo:")
         resultado_c3 = queries.shiny_con_apodo(session)
         for nombre, apodo, nivel, nombre_entrenador in resultado_c3:
-            print(f"- {nombre} ('{apodo}') | Nivel: {nivel} | Entrenador: {nombre_entrenador}")
+            print(
+                f"- {nombre} ('{apodo}') | Nivel: {nivel} | Entrenador: {nombre_entrenador}"
+            )
 
         print("\n[Consulta 4] Promedio de nivel por entrenador:")
         resultado_c4 = queries.promedio_nivel_por_entrenador(session)
@@ -53,7 +54,9 @@ def main() -> None:
         print("\n[Consulta 6] Estadistica de batallas por entrenador:")
         resultado_c6 = queries.estadisticas_batallas(session)
         for nombre, total, victorias, derrotas in resultado_c6:
-            print(f"- {nombre} | Total: {total} | Victorias: {victorias} | Derrotas: {derrotas}")
+            print(
+                f"- {nombre} | Total: {total} | Victorias: {victorias} | Derrotas: {derrotas}"
+            )
 
         print("\n[Consulta 7] Región con más insignias (promedio):")
         resultado_c7 = queries.region_mas_insignias(session)

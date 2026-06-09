@@ -1,8 +1,18 @@
 from sqlmodel import Session, select, func, col, case, text
-from models import Pokemon, Entrenador, Tipo, PokemonTipo, Participacion, Batalla, Region
+from models import (
+    Pokemon,
+    Entrenador,
+    Tipo,
+    PokemonTipo,
+    Participacion,
+    Batalla,
+    Region,
+)
 
 
-def pokemon_alto_nivel(session: Session, umbral: int = 70) -> list[tuple[str, int, str]]:
+def pokemon_alto_nivel(
+    session: Session, umbral: int = 70
+) -> list[tuple[str, int, str]]:
     """
     Retorna los Pokémon con nivel mayor o igual al umbral, de mayor a menor nivel.
     """

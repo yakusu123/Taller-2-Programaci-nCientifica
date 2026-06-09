@@ -1,6 +1,14 @@
 from sqlmodel import Session, select
 
-from models import Tipo, Entrenador, Region, Pokemon, Batalla, Participacion, PokemonTipo
+from models import (
+    Tipo,
+    Entrenador,
+    Region,
+    Pokemon,
+    Batalla,
+    Participacion,
+    PokemonTipo,
+)
 from database import engine
 
 
@@ -147,63 +155,54 @@ def seed_pokemon_y_tipos(session: Session) -> None:
         ("Nidoking", 45, 100, False, None, "Giovanni", ["Veneno", "Tierra"]),
         ("Rhydon", 50, 105, False, None, "Giovanni", ["Tierra", "Roca"]),
         ("Persian", 40, 85, True, "Garfield", "Giovanni", ["Normal"]),
-
         ("Typhlosion", 80, 172, False, None, "Ethan", ["Fuego"]),
         ("Espeon", 72, 145, False, "Espionaje", "Ethan", ["Psíquico"]),
         ("Heracross", 72, 145, False, None, "Ethan", ["Bicho", "Lucha"]),
         ("Togekiss", 70, 152, False, None, "Ethan", ["Hada", "Volador"]),
         ("Lanturn", 67, 145, False, None, "Ethan", ["Agua", "Eléctrico"]),
         ("Donphan", 68, 148, False, None, "Ethan", ["Tierra"]),
-
         ("Sceptile", 35, 80, False, None, "Blasco", ["Planta"]),
         ("Swellow", 32, 72, False, None, "Blasco", ["Normal", "Volador"]),
         ("Lombre", 30, 68, False, None, "Blasco", ["Agua", "Planta"]),
         ("Loudred", 31, 70, False, None, "Blasco", ["Normal"]),
         ("Slugma", 20, 50, False, None, "Blasco", ["Fuego"]),
         ("Wingull", 20, 50, True, None, "Blasco", ["Agua", "Volador"]),
-
         ("Skarmory", 57, 118, False, None, "Maximo", ["Acero", "Volador"]),
         ("Claydol", 55, 115, False, None, "Maximo", ["Tierra", "Psíquico"]),
         ("Camerupt", 58, 120, False, None, "Maximo", ["Fuego", "Tierra"]),
         ("Aggron", 58, 122, False, None, "Maximo", ["Acero", "Roca"]),
         ("Solrock", 58, 118, False, None, "Maximo", ["Roca", "Psíquico"]),
         ("Flygon", 60, 130, False, None, "Maximo", ["Tierra", "Dragón"]),
-
         ("Spiritomb", 61, 128, False, None, "Cynthia", ["Fantasma", "Siniestro"]),
         ("Roserade", 60, 120, False, None, "Cynthia", ["Planta", "Veneno"]),
         ("Togekiss", 60, 128, True, "huevo volador", "Cynthia", ["Hada", "Volador"]),
         ("Lucario", 63, 132, False, None, "Cynthia", ["Lucha", "Acero"]),
         ("Milotic", 63, 138, False, None, "Cynthia", ["Agua"]),
         ("Garchomp", 66, 145, False, None, "Cynthia", ["Dragón", "Tierra"]),
-
         ("Darkrai", 80, 172, False, None, "Tobías", ["Siniestro"]),
         ("Latios", 80, 170, False, None, "Tobías", ["Dragón", "Psíquico"]),
         ("Absol", 73, 148, False, None, "Tobías", ["Siniestro"]),
         ("Hariyama", 71, 200, False, None, "Tobías", ["Lucha"]),
         ("Magmortar", 70, 145, False, None, "Tobías", ["Fuego"]),
         ("Electivire", 70, 145, False, None, "Tobías", ["Eléctrico"]),
-
         ("Zekrom", 52, 155, False, None, "N", ["Dragón", "Eléctrico"]),
         ("Carracosta", 50, 138, False, None, "N", ["Agua", "Roca"]),
         ("Archeops", 50, 135, False, None, "N", ["Roca", "Volador"]),
         ("Vanilluxe", 50, 130, False, None, "N", ["Hielo"]),
         ("Klinklang", 50, 125, False, None, "N", ["Acero"]),
         ("Zoroark", 50, 128, False, None, "N", ["Siniestro"]),
-
         ("Gigalith", 42, 112, False, None, "Roxy", ["Roca"]),
         ("Coalossal", 44, 118, False, None, "Roxy", ["Roca", "Fuego"]),
         ("Stonjourner", 44, 115, False, None, "Roxy", ["Roca"]),
         ("Barbaracle", 40, 105, False, None, "Roxy", ["Roca", "Agua"]),
         ("Sudowoodo", 38, 98, False, None, "Roxy", ["Roca"]),
         ("Rhyhorn", 6, 125, False, None, "Roxy", ["Tierra", "Roca"]),
-
         ("Thievul", 28, 72, False, None, "Berto", ["Siniestro"]),
         ("Boltund", 30, 78, False, None, "Berto", ["Eléctrico"]),
         ("Perrserker", 28, 74, False, None, "Berto", ["Acero"]),
         ("Obstagoon", 32, 85, False, None, "Berto", ["Siniestro", "Normal"]),
         ("Sirfetch'd", 34, 88, False, None, "Berto", ["Lucha"]),
         ("Falinks", 30, 78, False, None, "Berto", ["Lucha"]),
-
         ("Wattrel", 63, 128, False, None, "e-Nigma", ["Eléctrico", "Volador"]),
         ("Bellibolt", 65, 155, False, None, "e-Nigma", ["Eléctrico"]),
         ("Luxio", 64, 132, False, None, "e-Nigma", ["Eléctrico"]),
@@ -263,16 +262,17 @@ def seed_batallas_y_participaciones(session: Session) -> None:
             else:
                 resultado = "derrota"
 
-            session.add(Participacion(
-                entrenador_id=ent[p_nombre],
-                batalla_id=batalla.id,
-                resultado=resultado,
-            ))
+            session.add(
+                Participacion(
+                    entrenador_id=ent[p_nombre],
+                    batalla_id=batalla.id,
+                    resultado=resultado,
+                )
+            )
 
 
 def run_seed() -> None:
     with Session(engine) as session:
-
         if session.exec(select(Tipo)).first():
             print("La base de datos ya contiene datos.")
             print("\n Saltando poblacion de datos.")
