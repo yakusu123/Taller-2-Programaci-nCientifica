@@ -2,7 +2,7 @@ from collections.abc import Generator
 from sqlmodel import SQLModel, create_engine, Session
 
 DATABASE_URL = "sqlite:///pokedex.db"
-engine = create_engine(DATABASE_URL, echo=True)
+engine = create_engine(DATABASE_URL, echo=False)
 
 
 def create_db() -> None:
